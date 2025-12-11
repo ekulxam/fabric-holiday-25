@@ -20,6 +20,16 @@ hash = "575df9a354a2006f7287610b1e8c9111ebb89c2db6dbab34256db6e6870bc927"
 metafile = true
 
 [[files]]
+file = "mods/immersive-overlays.pw.toml"
+hash = "6de1175097ac66fd1713f4fd88f803f4f6984cd9e5e3bf5a6184e81a3d9091c0"
+metafile = true
+
+[[files]]
+file = "mods/inline-tooltips.pw.toml"
+hash = "0501a6702db586185a272d5d835f5302e40c95ec4d787d34801f0ac09da2e2e1"
+metafile = true
+
+[[files]]
 file = "mods/instant-feedback.pw.toml"
 hash = "29d7d0c59e953140526bea6a9ebcbdc871584b509e5cede23c7a2eb4b3cf683f"
 metafile = true
@@ -37,16 +47,6 @@ metafile = true
 [[files]]
 file = "mods/placeholder-api.pw.toml"
 hash = "c7cc3907e7adb7b30249dc2b5ccd3e30111d562475087e0188f00fb3bc5837de"
-metafile = true
-
-[[files]]
-file = "mods/immersive-overlays.pw.toml"
-hash = "9f0cee82eb8f94ef97085a9b532526fce88c3cead8c4b402a129a5cee11c07cd"
-metafile = true
-
-[[files]]
-file = "mods/inline-tooltips.pw.toml"
-hash = "417fc30eaee9ecb775af4ecf9562e9338d6623959eb062c57d3c48e05fb08249"
 metafile = true
 
 [[files]]

@@ -4,8 +4,8 @@ side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/TVOgzXyj/versions/D7RiR0QM/inline_tooltips-1.6.0%2B1.21.10-fabric.jar"
-hash-format = "sha512"
-hash = "38d0790242eb04035bfd9bb46e5fb63b214bd926dd01c15384237b817f0712ad079639119c7acd88b055a6582fd267aed1144f938f52e0953622b853e02d3e73"
+hash-format = "sha256"
+hash = "fb090e7b95812e53440bce9738a4d7025b70e5a7217fbdd0fe5b19e52ab1ab69"
 
 [update]
 [update.modrinth]

@@ -4,8 +4,8 @@ side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/PKoLkD98/versions/XWl59EPu/immersiveoverlays-1.4.7%2B1.21.10-fabric.jar"
-hash-format = "sha512"
-hash = "45c21aff0079c9b6633e4e7061be90f9ce4c1c88299f7a1f2aa6716c1cc6f410789679f3ab37e77d4e3989bd7fbf1dc9db0891c61c27a25e6e562f91acddd8a0"
+hash-format = "sha256"
+hash = "c37e257dd02cac6978133dea839093827123a5ffca158450d833e9bbc383db70"
 
 [update]
 [update.modrinth]
