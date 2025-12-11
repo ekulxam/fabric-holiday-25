@@ -1,0 +1,13 @@
+name = "Laseredstone"
+filename = "laseredstone-1.1.1+1.21.11.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/jlbb1hKs/versions/ySWv6Zet/laseredstone-1.1.1%2B1.21.11.jar"
+hash-format = "sha512"
+hash = "7673d6744878d64a4ecbb5e068cb94bcfdfe329f96020d1bc889637ed0e7a3dae0d86a4fe15210859fb61c4c614c10c592bfbf2b186c23921f6006ceb4ec1649"
+
+[update]
+[update.modrinth]
+mod-id = "jlbb1hKs"
+version = "ySWv6Zet"

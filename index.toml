@@ -10,6 +10,11 @@ hash = "78568b988a30084520820c45d6f03de3442eca5800d77e870879200af28b5bc2"
 metafile = true
 
 [[files]]
+file = "mods/laseredstone.pw.toml"
+hash = "a1c9efcc99cfc4ae95a01b20e1af2d872c7a8813991cabf9cb820c5f8509667f"
+metafile = true
+
+[[files]]
 file = "mods/promotedserver.pw.toml"
 hash = "c95fe5b450d8eded1af2733a7b5b647ac63baaf8c5aa4cd00da3a7278127e124"
 metafile = true
