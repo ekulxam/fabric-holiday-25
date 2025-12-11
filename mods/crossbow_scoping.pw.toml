@@ -1,0 +1,13 @@
+name = "Crossbow Scoping"
+filename = "crossbow_scoping-1.1.5+1.21.11.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/FnccFWhR/versions/W3mkr2uh/crossbow_scoping-1.1.5%2B1.21.11.jar"
+hash-format = "sha512"
+hash = "e588b45f65e6fee49605ff4304b5118e548f21eecfb0a2e43f8464b933da3801b61b1ccc7c19b83bcbacb6ab24b8d93161a2abf3a940bb87a8c4e7c1acab8d87"
+
+[update]
+[update.modrinth]
+mod-id = "FnccFWhR"
+version = "W3mkr2uh"

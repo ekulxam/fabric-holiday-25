@@ -5,6 +5,11 @@ file = "config/promotedserver/servers.dat"
 hash = "2065c37b24ba0658d9d2a181632952f447caf3c0fd004d7393a17984d73a3f3b"
 
 [[files]]
+file = "mods/crossbow_scoping.pw.toml"
+hash = "78d899a76a2ee0052020de9e6e60a2e74459c124624d5d08156714a2b0102a06"
+metafile = true
+
+[[files]]
 file = "mods/fabric-api.pw.toml"
 hash = "78568b988a30084520820c45d6f03de3442eca5800d77e870879200af28b5bc2"
 metafile = true
