@@ -1,0 +1,11 @@
+{
+	"schemaVersion": 1,
+	"id": "holiday-server-mod",
+	"version": "${version}",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"holiday.server.CommonEntrypoint"
+		]
+	}
+}
