@@ -1,12 +1,12 @@
 name = "Fabric Holiday 25"
 author = "Louis, Fabricord"
-version = "1.0.0"
+version = "1.1.0"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "e1e21b9116c597bc4b72c7a09231cfeb73a8abb2b5dc7c08fb5ebeb3560fe3e1"
+hash = "cfcf238248f2532ec33d325275222be590d985ccce5caf2cb1aa13059601ebbb"
 
 [versions]
 fabric = "0.18.2"
