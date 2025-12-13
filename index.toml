@@ -2,82 +2,65 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/promotedserver/servers.dat"
-hash = "2065c37b24ba0658d9d2a181632952f447caf3c0fd004d7393a17984d73a3f3b"
 
 [[files]]
 file = "mods/ChainStyleWither-1.7.0.jar"
-hash = "277a8ecd287fcbe905d70c6fa707b880bd928b67ff4204295443bf8f5bf6dbed"
 
 [[files]]
 file = "mods/apothicspawners-0.0.1.jar"
-hash = "22aa6af06401c3dbf78b4828b8672f39bca33d1d668cac770ca486998324725c"
 
 [[files]]
 file = "mods/badpackets.pw.toml"
-hash = "3b376e852bf5c733133fc2904e72a99a5c052e2f2f49c4268e99e45cccca3afa"
 metafile = true
 
 [[files]]
 file = "mods/cloth-config.pw.toml"
-hash = "8a2c564b4b7b8ce6642c25d517920ac12199a09c57ee850044276185f491a84a"
 metafile = true
 
 [[files]]
 file = "mods/crossbow_scoping.pw.toml"
-hash = "43e86c3651f84ce92b8ec42a631e675fb35b500143cef8a41c7ec76ecf895160"
 metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
-hash = "6cf5d35544d91a3bf197002762bacbecb8e778f7ad8a56a2abb5832c7df12a80"
 metafile = true
 
 [[files]]
 file = "mods/grind-enchantments.pw.toml"
-hash = "575df9a354a2006f7287610b1e8c9111ebb89c2db6dbab34256db6e6870bc927"
 metafile = true
 
 [[files]]
 file = "mods/immersive-overlays.pw.toml"
-hash = "6de1175097ac66fd1713f4fd88f803f4f6984cd9e5e3bf5a6184e81a3d9091c0"
 metafile = true
 
 [[files]]
 file = "mods/inline-tooltips.pw.toml"
-hash = "0501a6702db586185a272d5d835f5302e40c95ec4d787d34801f0ac09da2e2e1"
 metafile = true
 
 [[files]]
 file = "mods/instant-feedback.pw.toml"
-hash = "29d7d0c59e953140526bea6a9ebcbdc871584b509e5cede23c7a2eb4b3cf683f"
 metafile = true
 
 [[files]]
 file = "mods/laseredstone.pw.toml"
-hash = "f00e9036ea245c75305f760c1a9eafbfa0c653119ab8fd394e90ad39f459c6cf"
 metafile = true
 
 [[files]]
 file = "mods/modmenu.pw.toml"
-hash = "89cedb686d76c3be65da8cd097c8bbb980b087eb99ee46152a8114f743946224"
 metafile = true
 
 [[files]]
 file = "mods/placeholder-api.pw.toml"
-hash = "c7cc3907e7adb7b30249dc2b5ccd3e30111d562475087e0188f00fb3bc5837de"
 metafile = true
 
 [[files]]
 file = "mods/promotedserver.pw.toml"
-hash = "cc53ad43e9b83e554e2ab1991aaa259151a30db78d14e1f011be6391d2a90f2c"
 metafile = true
 
 [[files]]
 file = "mods/wthit.pw.toml"
-hash = "42df34ef67d231795e56d353378d3eb38905173504c1496bf0f4d88ee7c9d69d"
 metafile = true
 
 [[files]]
 file = "mods/x-bar-theory.pw.toml"
-hash = "f4103d58d6d0eec24602dc505ab67d0a6aa5182ad254096818ecaf1f2bafe799"
 metafile = true
