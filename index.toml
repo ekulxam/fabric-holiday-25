@@ -22,11 +22,19 @@ file = "mods/crossbow_scoping.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/ellies-storage-options.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/extended-drawers.pw.toml"
 metafile = true
 
 [[files]]
 file = "mods/fabric-api.pw.toml"
+metafile = true
+
+[[files]]
+file = "mods/fabric-language-kotlin.pw.toml"
 metafile = true
 
 [[files]]

@@ -1,0 +1,13 @@
+name = "Ellie's Storage Options"
+filename = "storage-options-2111.0.5.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/ff8g5rNf/versions/tVm7b3zJ/storage-options-2111.0.5.0.jar"
+hash-format = "sha512"
+hash = "58c462cae7f19d3822aa59e24711c498d29fc2cfca02657d2163ef14c15db38b96e06ecd93560fbd972e96139eaa1b7ba14edb4ed4958588674365bd99d535ca"
+
+[update]
+[update.modrinth]
+mod-id = "ff8g5rNf"
+version = "tVm7b3zJ"
