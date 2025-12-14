@@ -152,6 +152,10 @@ file = "mods/modmenu.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/phantom-lucidity.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/placeholder-api.pw.toml"
 metafile = true
 

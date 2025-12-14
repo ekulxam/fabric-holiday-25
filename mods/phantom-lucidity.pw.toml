@@ -1,0 +1,13 @@
+name = "Phantom Lucidity"
+filename = "phantomlucidity-1.4.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/jp5wZgsb/versions/tbd13Sjn/phantomlucidity-1.4.0.jar"
+hash-format = "sha512"
+hash = "5608c6d3adf2ec0910f56186e0c48718bdc8c193c0f29d32bd451f620b4aac78b2f38c0b4ad3569e0bc305cedcfaf00235c5d5f1eed0ed1ce32aa9d75eec21d4"
+
+[update]
+[update.modrinth]
+mod-id = "jp5wZgsb"
+version = "tbd13Sjn"
