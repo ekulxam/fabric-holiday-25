@@ -21,7 +21,15 @@ file = "mods/badpackets.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/breakerplacer.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
+metafile = true
+
+[[files]]
+file = "mods/clumps.pw.toml"
 metafile = true
 
 [[files]]
@@ -46,6 +54,10 @@ metafile = true
 
 [[files]]
 file = "mods/fabric-language-kotlin.pw.toml"
+metafile = true
+
+[[files]]
+file = "mods/frozenlib.pw.toml"
 metafile = true
 
 [[files]]
@@ -81,6 +93,10 @@ file = "mods/more_than_a_foxbox.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/open-sesame.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/phantom-lucidity.pw.toml"
 metafile = true
 
@@ -97,7 +113,15 @@ file = "mods/promotedserver.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/simple-copper-pipes.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/strawberrylib.pw.toml"
+metafile = true
+
+[[files]]
+file = "mods/styled-nicknames.pw.toml"
 metafile = true
 
 [[files]]

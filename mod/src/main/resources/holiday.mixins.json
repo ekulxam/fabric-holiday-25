@@ -7,6 +7,7 @@
     "EndermanMixin",
     "EndPortalBlockMixin",
     "EntityMixin",
+    "LevelStorageMixin",
     "LivingEntityMixin",
     "ServerPlayNetworkHandlerMixin",
     "WhitelistCommandMixin"
