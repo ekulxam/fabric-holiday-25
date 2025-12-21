@@ -14,9 +14,19 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
 import net.fabricmc.loader.api.FabricLoader;
+
+import net.minecraft.block.AbstractCauldronBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.LavaCauldronBlock;
+import net.minecraft.block.LeveledCauldronBlock;
+import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BucketItem;
+import net.minecraft.item.Items;
 import net.minecraft.network.DisconnectionInfo;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -27,6 +37,9 @@ import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.network.ServerConfigurationNetworkHandler;
 import net.minecraft.server.network.ServerPlayerConfigurationTask;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -67,6 +80,63 @@ public class CommonEntrypoint implements ModInitializer {
         HolidayServerItems.register();
         HolidayServerLootContextTypes.register();
         HolidayServerSoundEvents.register();
+
+        DispenserBehavior oldBucketBehavior = DispenserBlock.BEHAVIORS.get(Items.BUCKET);
+        DispenserBehavior bucketBehavior = (pointer, stack) -> {
+            BlockPos pos = pointer.pos()
+                .offset(pointer.state().get(DispenserBlock.FACING));
+            BlockState state = pointer.world().getBlockState(pos);
+
+            if (state.getBlock() instanceof AbstractCauldronBlock cauldronBlock && stack.getCount() == 1) {
+                Fluid fluid;
+
+                if (cauldronBlock.isFull(state) && stack.isOf(Items.BUCKET)) {
+                    if (state.getBlock() instanceof LavaCauldronBlock) {
+                        fluid = Fluids.LAVA;
+                    } else {
+                        fluid = Fluids.WATER;
+                    }
+
+                    pointer.world()
+                        .setBlockState(pos, Blocks.CAULDRON.getDefaultState());
+                    pointer.world().playSound(
+                        null,
+                        pos,
+                        fluid.getBucketFillSound()
+                            .orElse(SoundEvents.ITEM_BUCKET_FILL),
+                        SoundCategory.BLOCKS,
+                        1.0f,
+                        1.5f
+                    );
+
+                    return fluid.getBucketItem().getDefaultStack();
+                } else {
+                    fluid = ((BucketItem) stack.getItem()).getFluid();
+                    SoundEvent soundEvent = fluid == Fluids.LAVA ? SoundEvents.ITEM_BUCKET_EMPTY_LAVA : SoundEvents.ITEM_BUCKET_EMPTY;
+                    BlockState cauldronState = fluid == Fluids.LAVA ?
+                        Blocks.LAVA_CAULDRON.getDefaultState() :
+                        Blocks.WATER_CAULDRON.getDefaultState()
+                            .with(LeveledCauldronBlock.LEVEL, LeveledCauldronBlock.MAX_LEVEL);
+
+                    pointer.world().setBlockState(pos, cauldronState);
+                    pointer.world().playSound(
+                        null,
+                        pos,
+                        soundEvent,
+                        SoundCategory.BLOCKS,
+                        1.0f,
+                        1.5f
+                    );
+
+                    return Items.BUCKET.getDefaultStack();
+                }
+            }
+
+            return oldBucketBehavior.dispense(pointer, stack);
+        };
+        DispenserBlock.registerBehavior(Items.BUCKET, bucketBehavior);
+        DispenserBlock.registerBehavior(Items.LAVA_BUCKET, bucketBehavior);
+        DispenserBlock.registerBehavior(Items.WATER_BUCKET, bucketBehavior);
 
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);
