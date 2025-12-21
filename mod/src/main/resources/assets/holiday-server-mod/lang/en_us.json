@@ -39,6 +39,9 @@
   "block.holiday-server-mod.tiny_potato": "Tiny Potato",
   "item.holiday-server-mod.absolutely_safe_armor": "Absolutely Safe Armor",
   "item.holiday-server-mod.absolutely_safe_armor.exit_tooltip": "You are absolutely safe.",
+  "item.holiday-server-mod.hopper_mite": "Hopper Mite",
+  "item.holiday-server-mod.hopper_mite.tooltip": "Diet of %s",
+  "subtitles.item.holiday-server-mod.hopper_mite.eat": "Hopper Mite eats",
   "tag.block.holiday-server-mod.crying_impactors": "Crying Impactors",
   "painting.holiday-server-mod.outdated.title": "Outdated",
   "painting.holiday-server-mod.outdated.author": "Fabric Contributors"

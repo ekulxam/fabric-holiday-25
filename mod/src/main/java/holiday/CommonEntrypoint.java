@@ -4,6 +4,8 @@ import com.mojang.serialization.Codec;
 import holiday.block.HolidayServerBlocks;
 import holiday.component.HolidayServerDataComponentTypes;
 import holiday.item.HolidayServerItems;
+import holiday.loot.HolidayServerLootContextTypes;
+import holiday.sound.HolidayServerSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
@@ -56,6 +58,8 @@ public class CommonEntrypoint implements ModInitializer {
         HolidayServerBlocks.register();
         HolidayServerDataComponentTypes.register();
         HolidayServerItems.register();
+        HolidayServerLootContextTypes.register();
+        HolidayServerSoundEvents.register();
 
         PayloadTypeRegistry.configurationS2C().register(RequestVersionPayload.ID, RequestVersionPayload.PACKET_CODEC);
         PayloadTypeRegistry.configurationC2S().register(VersionResponsePayload.ID, VersionResponsePayload.PACKET_CODEC);

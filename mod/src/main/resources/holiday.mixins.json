@@ -6,8 +6,10 @@
   "mixins": [
     "EndPortalBlockMixin",
     "EntityMixin",
-    "LevelStorageMixin",
+    "HopperBlockEntityMixin",
     "LivingEntityMixin",
+    "LootContextTypesAccessor",
+    "RedstoneTorchBlockMixin",
     "ServerPlayNetworkHandlerMixin",
     "WhitelistCommandMixin"
   ],

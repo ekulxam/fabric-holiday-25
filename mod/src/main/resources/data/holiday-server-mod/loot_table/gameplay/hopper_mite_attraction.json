@@ -1,0 +1,16 @@
+{
+  "type": "holiday-server-mod:burn_out",
+  "pools": [
+    {
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "holiday-server-mod:hopper_mite"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "holiday-server-mod:gameplay/hopper_mite_attraction"
+}

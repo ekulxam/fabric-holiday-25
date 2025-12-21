@@ -1,0 +1,15 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "holiday-server-mod:mite_food",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "holiday-server-mod:item/hopper_mite"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "holiday-server-mod:item/hopper_mite_food"
+    }
+  }
+}
