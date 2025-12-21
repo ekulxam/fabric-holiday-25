@@ -21,6 +21,10 @@ file = "mods/badpackets.pw.toml"
 metafile = true
 
 [[files]]
+file = "mods/breakerplacer.pw.toml"
+metafile = true
+
+[[files]]
 file = "mods/cloth-config.pw.toml"
 metafile = true
 
