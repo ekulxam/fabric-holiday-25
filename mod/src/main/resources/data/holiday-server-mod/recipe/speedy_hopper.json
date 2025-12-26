@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "minecraft:chest",
+    "I": "minecraft:iron_block"
+  },
+  "pattern": [
+    "I I",
+    "ICI",
+    " I "
+  ],
+  "result": {
+    "components": {
+      "minecraft:block_entity_data": {
+        "id": "minecraft:hopper",
+        "Speedy": true
+      },
+      "minecraft:enchantment_glint_override": true
+    },
+    "count": 1,
+    "id": "minecraft:hopper"
+  }
+}

@@ -3,18 +3,25 @@ package holiday.mixin;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
+import com.mojang.serialization.Codec;
+import holiday.pond.SpeedyHopperAccess;
+import holiday.item.HopperMiteItem;
+import holiday.tag.HolidayServerItemTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
-import org.spongepowered.asm.mixin.Debug;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import holiday.item.HopperMiteItem;
-import holiday.tag.HolidayServerItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.inventory.Inventory;
@@ -24,13 +31,25 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 @Mixin(HopperBlockEntity.class)
-public abstract class HopperBlockEntityMixin {
+public abstract class HopperBlockEntityMixin implements SpeedyHopperAccess {
+    @Unique
+    private boolean speedy;
+
+    @Unique
+    private static final Codec<Boolean> SPEEDY_CODEC = Codec.BOOL;
+
     @Inject(
             method = "serverTick",
             at = @At("HEAD")
     )
-    private static void applyHopperMiteEffects(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, CallbackInfo ci) {
+    private static void tickHoppers(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, CallbackInfo ci) {
         HopperMiteItem.applyEffectsTo(world, pos, blockEntity);
+        if (((SpeedyHopperAccess) blockEntity).fabricHoliday$isSpeedy()
+            && world.getRandom().nextBetween(0, 100) == 0
+            && world instanceof ServerWorld serverWorld
+            && world.getBlockState(pos.up()).isAir()) {
+            serverWorld.spawnParticles(ParticleTypes.SOUL, false, false, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 1, 0, 0, 0, 0.01);
+        }
     }
 
     @Inject(
@@ -89,4 +108,37 @@ public abstract class HopperBlockEntityMixin {
         }
     }
 
+    @WrapMethod(
+        method = "needsCooldown"
+    )
+    private boolean noCooldownIfSpeedy(Operation<Boolean> original) {
+        if (this.speedy) return false;
+        return original.call();
+    }
+
+    @Override
+    public boolean fabricHoliday$isSpeedy() {
+        return speedy;
+    }
+
+    @Override
+    public void fabricHoliday$setSpeedy(boolean value) {
+        this.speedy = value;
+    }
+
+    @Inject(
+        method = "writeData",
+        at = @At("TAIL")
+    )
+    private void writeSpeedy(WriteView view, CallbackInfo ci) {
+        view.put("Speedy", SPEEDY_CODEC, speedy);
+    }
+
+    @Inject(
+        method = "readData",
+        at = @At("TAIL")
+    )
+    private void readSpeedy(ReadView view, CallbackInfo ci) {
+        this.speedy = view.getBoolean("Speedy", false);
+    }
 }
