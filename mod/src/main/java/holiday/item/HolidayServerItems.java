@@ -50,6 +50,9 @@ public final class HolidayServerItems {
         )
     );
 
+    public static final Item GOLDEN_HOPPER = register("golden_hopper", settings -> new BlockItem(HolidayServerBlocks.GOLDEN_HOPPER, settings
+        .useBlockPrefixedTranslationKey()));
+
     public static Item register(String id, Item.Settings settings) {
         return register(keyOf(id), Item::new, settings);
     }
@@ -83,9 +86,8 @@ public final class HolidayServerItems {
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
-            entries.addAfter(Items.HOPPER, HOPPER_MITE);
-            entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_SAND);
-            entries.addAfter(Items.REDSTONE_BLOCK, ENDER_PARALYZER);
+            entries.addAfter(Items.HOPPER, GOLDEN_HOPPER, HOPPER_MITE);
+            entries.addAfter(Items.REDSTONE_BLOCK, REDSTONE_SAND, ENDER_PARALYZER);
 
 	});
     }

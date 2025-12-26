@@ -2,16 +2,15 @@ package holiday;
 
 import com.mojang.serialization.Codec;
 import holiday.block.HolidayServerBlocks;
+import holiday.block.blockentity.HolidayServerBlockEntities;
 import holiday.component.HolidayServerDataComponentTypes;
 import holiday.event.EndermanParalyzeEvent;
 import holiday.item.HolidayServerItems;
 import holiday.loot.HolidayServerLootContextTypes;
-import holiday.pond.SpeedyHopperAccess;
 import holiday.sound.HolidayServerSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
-import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerConfigurationNetworking;
@@ -24,16 +23,11 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.LavaCauldronBlock;
 import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.TypedEntityData;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.DisconnectionInfo;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -87,6 +81,7 @@ public class CommonEntrypoint implements ModInitializer {
         HolidayServerItems.register();
         HolidayServerLootContextTypes.register();
         HolidayServerSoundEvents.register();
+        HolidayServerBlockEntities.register();
 
         DispenserBehavior oldBucketBehavior = DispenserBlock.BEHAVIORS.get(Items.BUCKET);
         DispenserBehavior bucketBehavior = (pointer, stack) -> {
@@ -166,18 +161,6 @@ public class CommonEntrypoint implements ModInitializer {
         });
 
         EndermanParalyzeEvent.EVENT.register((this::getIsParalyzed));
-
-        LootTableEvents.MODIFY_DROPS.register(((registryEntry, lootContext, list) -> {
-            if (Blocks.HOPPER.getLootTableKey().orElseThrow().equals(registryEntry.getKey().orElseThrow()) && ((SpeedyHopperAccess)lootContext.get(LootContextParameters.BLOCK_ENTITY)).fabricHoliday$isSpeedy()) {
-                list.removeIf(stack -> stack.getItem() == Items.HOPPER);
-                var compound = new NbtCompound();
-                compound.putBoolean("Speedy", true);
-                var stack = Items.HOPPER.getDefaultStack().copy();
-                stack.set(DataComponentTypes.BLOCK_ENTITY_DATA, TypedEntityData.create(BlockEntityType.HOPPER, compound));
-                stack.set(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
-                list.add(stack);
-            }
-        }));
     }
 
     private static void disconnect(ServerConfigurationNetworkHandler handler, String currentVersion) {

@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "holiday-server-mod:block/golden_hopper"
+    },
+    "facing=east": {
+      "model": "holiday-server-mod:block/golden_hopper_side",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "holiday-server-mod:block/golden_hopper_side"
+    },
+    "facing=south": {
+      "model": "holiday-server-mod:block/golden_hopper_side",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "holiday-server-mod:block/golden_hopper_side",
+      "y": 270
+    }
+  }
+}

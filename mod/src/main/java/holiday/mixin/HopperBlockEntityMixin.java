@@ -1,17 +1,14 @@
 package holiday.mixin;
 
-import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.mojang.serialization.Codec;
-import holiday.pond.SpeedyHopperAccess;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
+import holiday.block.HolidayServerBlocks;
+import holiday.block.blockentity.GoldenHopperBlockEntity;
+import holiday.block.blockentity.HolidayServerBlockEntities;
+import net.minecraft.block.entity.BlockEntityType;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -26,25 +23,13 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 @Mixin(HopperBlockEntity.class)
-public class HopperBlockEntityMixin implements SpeedyHopperAccess {
-    @Unique
-    private boolean speedy;
-
-    @Unique
-    private static final Codec<Boolean> SPEEDY_CODEC = Codec.BOOL;
-
+public class HopperBlockEntityMixin {
     @Inject(
             method = "serverTick",
             at = @At("HEAD")
     )
-    private static void tickHoppers(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, CallbackInfo ci) {
+    private static void applyHopperMiteEffects(World world, BlockPos pos, BlockState state, HopperBlockEntity blockEntity, CallbackInfo ci) {
         HopperMiteItem.applyEffectsTo(world, pos, blockEntity);
-        if (((SpeedyHopperAccess) blockEntity).fabricHoliday$isSpeedy()
-            && world.getRandom().nextBetween(0, 100) == 0
-            && world instanceof ServerWorld serverWorld
-            && world.getBlockState(pos.up()).isAir()) {
-            serverWorld.spawnParticles(ParticleTypes.SOUL, false, false, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 1, 0, 0, 0, 0.01);
-        }
     }
 
     @Inject(
@@ -80,37 +65,21 @@ public class HopperBlockEntityMixin implements SpeedyHopperAccess {
         }
     }
 
-    @WrapMethod(
-        method = "needsCooldown"
+    @ModifyArg(
+        method = "<init>",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/LootableContainerBlockEntity;<init>(Lnet/minecraft/block/entity/BlockEntityType;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V")
     )
-    private boolean noCooldownIfSpeedy(Operation<Boolean> original) {
-        if (this.speedy) return false;
-        return original.call();
+    private static BlockEntityType<?> goldenHopperMoment(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
+        if (state.isOf(HolidayServerBlocks.GOLDEN_HOPPER)) return HolidayServerBlockEntities.GOLDEN_HOPPER_BLOCK_ENTITY;
+        return blockEntityType;
     }
 
-    @Override
-    public boolean fabricHoliday$isSpeedy() {
-        return speedy;
-    }
-
-    @Override
-    public void fabricHoliday$setSpeedy(boolean value) {
-        this.speedy = value;
-    }
-
-    @Inject(
-        method = "writeData",
-        at = @At("TAIL")
+    @WrapOperation(
+        method = "insert",
+        at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/HopperBlockEntity;removeStack(II)Lnet/minecraft/item/ItemStack;")
     )
-    private void writeSpeedy(WriteView view, CallbackInfo ci) {
-        view.put("Speedy", SPEEDY_CODEC, speedy);
-    }
-
-    @Inject(
-        method = "readData",
-        at = @At("TAIL")
-    )
-    private void readSpeedy(ReadView view, CallbackInfo ci) {
-        this.speedy = view.getBoolean("Speedy", false);
+    private static ItemStack fastGolden(HopperBlockEntity instance, int slot, int amount, Operation<ItemStack> original) {
+        if (instance instanceof GoldenHopperBlockEntity) return original.call(instance, slot, instance.getStack(slot).getCount());
+        return original.call(instance, slot, amount);
     }
 }

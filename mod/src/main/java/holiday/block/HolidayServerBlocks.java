@@ -1,6 +1,7 @@
 package holiday.block;
 
 import holiday.CommonEntrypoint;
+import net.fabricmc.fabric.mixin.content.registry.BlockBehaviourAccessor;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.enums.SculkSensorPhase;
@@ -31,6 +32,14 @@ public final class HolidayServerBlocks {
         .strength(1.5F)
         .sounds(BlockSoundGroup.SCULK_SENSOR)
         .luminance(state -> 1)));
+
+    public static final Block GOLDEN_HOPPER = register("golden_hopper", settings -> new GoldenHopperBlock(settings
+        .requiresTool()
+        .strength(3.0F, 4.8F)
+        .sounds(BlockSoundGroup.METAL)
+        .nonOpaque()
+        .mapColor(MapColor.GOLD)));
+
     private HolidayServerBlocks() {
     }
 
